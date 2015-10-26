@@ -1,0 +1,1 @@
+5. A branch can be defined as lightweight movable pointer towards different versions of the same file. This way, Git stores different versions of a file as a tree where each branch embodies a different version.
