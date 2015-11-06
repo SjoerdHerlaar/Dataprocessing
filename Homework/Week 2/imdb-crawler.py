@@ -215,14 +215,13 @@ def scrape_top_250(url):
     result = "http://imdb.com"
 
     for films in dom.by_tag("tbody.lister-list"):
-        for urls in films.by_tag("td.titleColumn")[:10]:
+        for urls in films.by_tag("td.titleColumn"):
             for url in urls.by_tag("a"):
                 content = str(url).split('"')
                 #print content[1]
                 result += str(content[1])
                 movie_urls.append(result)
                 result = "http://imdb.com"
-    print movie_urls
     return movie_urls               
 
 
@@ -249,20 +248,62 @@ def scrape_movie_page(dom):
         several), actor(s) (semicolon separated if several), rating, number
         of ratings.
     '''
-    overview = dom.by_tag("div.maindetails_details")
-    details = overview.by_tag("td.overview_top")
-    title = details.by_tag("span.itemprop")[0]
-    nobr = details.by_tag("a")
-    year = nobr.by_tag()
-    duration = details.by_tag("time.duration")
-
-
-
+    info = []
+    #title
+    title = dom.by_tag("span.itemprop")[0].content
+    info.append(title)
+    #duration
+    time = dom.by_attr(itemprop="duration")[0].content
+    time = time.replace(" ", "")
+    time = time.replace("\n", "")
+    time = time.replace("min", "")
+    info.append(time)
+    #genres
+    genres = str("")
+    divs = dom.by_class("infobar")[0]
+    for genre in divs.by_attr(itemprop="genre"):
+        genres += genre.content
+        genres += "; "
+    genres = genres[:-2]
+    info.append(genres)
+    #Directors
+    directors = str("")
+    directorhtml = dom.by_attr(itemprop="director")[0]
+    for a in directorhtml.by_tag("a"):
+        for name in a.by_attr(itemprop="name"):
+            directors += name.content
+            directors += "; "
+    directors = directors[:-2]
+    info.append(directors)
+    #writers
+    creators = str("")
+    creatorhtml = dom.by_attr(itemprop="creator")[0]
+    for creator in creatorhtml.by_attr(itemprop="name"):
+        creators += creator.content
+        creators +="; "
+    creators = creators[:-2]
+    info.append(creators)
+    #actors
+    actors = str("")
+    actorhtml = dom.by_attr(itemprop="actors")[0]
+    for actor in actorhtml.by_attr(itemprop="name"):
+        actors += actor.content
+        actors += "; "
+    actors = actors[:-2]
+    info.append(actors)
+    #ratings
+    ratings = dom.by_attr(itemprop="ratingValue")
+    rating = ratings[0].content
+    info.append(rating)
+    n_ratingshtml = dom.by_attr(itemprop="ratingCount")
+    info.append(n_ratingshtml[0].content)
+    #return list with info
+    return info
 
     # Return everything of interest for this movie (all strings as specified
     # in the docstring of this function).
-    return title, duration, genres, directors, writers, actors, rating, \
-        n_ratings
+    #return title, duration, genres, directors, writers, actors, rating, \
+    #    n_ratings
 
 
 if __name__ == '__main__':
