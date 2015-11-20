@@ -240,15 +240,13 @@ function createTransform(domain, range){
 	// range is a two-element array of the range's bounds
 	// implement the actual calculation here
 	// a = 
-	var beta = range[0]; 	//padding b = range[0] - a*domain[0]
-	var alpha = (range[1] - range[0]) / (domain[1] - domain[0]);				//scaling factor
-
-	console.log(beta)
-	console.log(alpha)
+	
+	var alpha = (range[1] - range[0]) / (domain[1] - domain[0]);
+	var beta = range[0] - (alpha * domain[0])
+	//padding b = range[0] - a*domain[0] scaling factor
 
 	return function(x){
 		return alpha * x + beta;
-		console.log(x)
 	};
 }
 

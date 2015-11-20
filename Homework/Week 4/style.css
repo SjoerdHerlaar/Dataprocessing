@@ -1,0 +1,19 @@
+.wrapper {
+	position: relative;
+	width: 1000px;
+	height: 550px;
+}
+
+.wrapper canvas{
+	position: absolute;
+	top:0;
+	left: 0;
+	height:1000;
+	width:1000;
+	border: 1px solid #BDBDBD
+}
+#tempdiv, #datediv{
+	border: 1px solid #000000;
+	background: #FA8258;
+	font-family: Tahoma;
+}
