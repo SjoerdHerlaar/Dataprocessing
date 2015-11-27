@@ -1,33 +1,3 @@
-/* continent color */
-.eu
-{
-  fill: #0000ff;
-   stroke:#ffffff;
-   stroke-width:0.5;
-   fill-rule:evenodd;
-}
-
-
-
-#path3884
-{
-  fill: #0000ff;
-   stroke:#ffffff;
-   stroke-width:0.5;
-   fill-rule:evenodd;
-}
-
-/* country colors */
-#country1
-{
-  
-}
-
-#country2
-{
-
-}
-
 /*
  * Below are Cascading Style Sheet (CSS) definitions in use in this file,
  * which allow easily changing how countries are displayed.
@@ -144,6 +114,33 @@
    stroke-width:0.5;
    stroke-miterlimit:1;
 }
+
+/* continent color */
+.eu
+{
+  fill: #0000ff;
+  stroke:#ffffff;
+  stroke-width:0.5;
+  fill-rule:evenodd;
+}
+
+/* country colors */
+.be
+{
+  fill: #FFFF00;
+  stroke:#ffffff;
+  stroke-width:0.5;
+  fill-rule:evenodd; 
+}
+
+.cz
+{
+	fill: #FF0000;
+    stroke:#ffffff;
+    stroke-width:0.5;
+    fill-rule:evenodd; 
+}
+
 
 /*
  * Additional style rules
